@@ -16,9 +16,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService{
 	
-	private final CustomerCrudRepo customerCrudRepo;
-	private final  CustomerPageRepo customerPageRepo;
-	private final CustomerJPARepo customerJPARepo;
+	private  CustomerCrudRepo customerCrudRepo;
+	private   CustomerPageRepo customerPageRepo;
+	private  CustomerJPARepo customerJPARepo;
 	
 	
 	@Override
