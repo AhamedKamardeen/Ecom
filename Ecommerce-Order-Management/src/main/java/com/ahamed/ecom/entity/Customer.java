@@ -1,13 +1,16 @@
 package com.ahamed.ecom.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,5 +40,10 @@ public class Customer {
 	  @JsonProperty("updatedOn")
 	  private Date updatedOn;
 
+	  @OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL)
+	  private List<Order> orders;
+	  
+	  @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	  private List<Payment> payments;
 
 }

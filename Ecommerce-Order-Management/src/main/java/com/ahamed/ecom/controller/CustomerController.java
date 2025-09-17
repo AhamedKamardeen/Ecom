@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerController {
 	
-	private final CustomerService customerService;
+	private  CustomerService customerService;
 	
 	@GetMapping("/get-all-customer")
 	public List<Customer> getAllCustomer(){
