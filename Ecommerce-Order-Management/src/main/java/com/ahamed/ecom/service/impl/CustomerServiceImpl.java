@@ -1,7 +1,9 @@
 package com.ahamed.ecom.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ahamed.ecom.entity.Customer;
@@ -21,6 +23,16 @@ public class CustomerServiceImpl implements CustomerService{
 	private  CustomerJPARepo customerJPARepo;
 	
 	
+	@Autowired
+	public CustomerServiceImpl(CustomerCrudRepo customerCrudRepo, CustomerPageRepo customerPageRepo,
+			CustomerJPARepo customerJPARepo) {
+		super();
+		this.customerCrudRepo = customerCrudRepo;
+		this.customerPageRepo = customerPageRepo;
+		this.customerJPARepo = customerJPARepo;
+	}
+
+
 	@Override
 	public List<Customer> getAllCustomer() {
 		return customerJPARepo.findAll();
@@ -32,5 +44,39 @@ public class CustomerServiceImpl implements CustomerService{
 	public Customer saveCustomer(Customer customer) {
 		return customerJPARepo.save(customer);
 	}
+
+
+	@Override
+	public Customer getCustomerById(long id) {
+		return customerJPARepo.findById(id).isPresent() ? customerJPARepo.findById(id).get() : null;
+	}
+
+
+	@Override
+	public Customer updateCustById(long id, Customer customer) {
+		// TODO Auto-generated method stub
+		Customer cust= customer;
+		cust.setId(id);
+		return customerJPARepo.save(cust);
+	}
+
+
+	@Override
+	public String deleteCustById(long id) {
+		String status="";
+		try {
+			customerJPARepo.deleteById(id);
+			status="deleted Successfullt........";
+			
+		}catch (Exception e) {
+			status="error";
+			e.printStackTrace();
+		}
+		return status;
+		
+	}
+	
+	
+
 
 }

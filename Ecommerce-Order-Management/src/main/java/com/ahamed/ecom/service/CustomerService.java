@@ -10,4 +10,10 @@ public interface CustomerService {
 
 	Customer saveCustomer(Customer customer);
 
+	Customer getCustomerById(long id);
+
+	Customer updateCustById(long id, Customer customer);
+
+	String deleteCustById(long id);
+
 }
